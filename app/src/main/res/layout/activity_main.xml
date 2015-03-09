@@ -10,7 +10,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Prende une vidéo"
+        android:text="Prendre une vidéo"
         android:id="@+id/button"
         android:layout_below="@+id/button2"
         android:layout_centerHorizontal="true"
@@ -19,13 +19,29 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Chercher vidéo"
+        android:text="Ouvrir vidéo"
         android:id="@+id/button2"
-        android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/button"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="47dp"
         android:clickable="true"
         android:elegantTextHeight="true"
         android:enabled="true"
-        android:focusable="false" />
+        android:focusable="false"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/button"
+        android:layout_alignEnd="@+id/button" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView2"
+        android:src="@mipmap/ic_launcher"
+        android:layout_alignBottom="@+id/imageView"
+        android:layout_alignEnd="@+id/imageView" />
 </RelativeLayout>
