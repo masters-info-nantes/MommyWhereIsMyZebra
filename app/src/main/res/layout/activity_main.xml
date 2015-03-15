@@ -11,8 +11,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Prendre une vidéo"
-        android:id="@+id/button"
-        android:layout_below="@+id/button2"
+        android:id="@+id/prendfeVideo"
+        android:layout_below="@+id/ouvrirVideo"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="60dp" />
 
@@ -20,28 +20,86 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Ouvrir vidéo"
-        android:id="@+id/button2"
+        android:id="@+id/ouvrirVideo"
         android:layout_marginTop="47dp"
         android:clickable="true"
         android:elegantTextHeight="true"
         android:enabled="true"
         android:focusable="false"
         android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/button"
-        android:layout_alignEnd="@+id/button" />
+        android:layout_alignStart="@+id/prendfeVideo"
+        android:layout_alignEnd="@+id/prendfeVideo"
+        android:visibility="visible"
+        android:nestedScrollingEnabled="false"
+        android:onClick="setListFooter" />
 
-    <ImageView
+    <Button
+        style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/imageView"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true" />
+        android:id="@+id/crayon"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:visibility="invisible"
+        android:layout_above="@+id/gomme"
+        android:layout_alignLeft="@+id/taille"
+        android:layout_alignStart="@+id/taille"
+        android:clickable="true"
+        android:enabled="true"
+        android:focusable="false"
+        android:background="@mipmap/crayon" />
 
-    <ImageView
+    <Button
+        style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/imageView2"
-        android:src="@mipmap/ic_launcher"
-        android:layout_alignBottom="@+id/imageView"
-        android:layout_alignEnd="@+id/imageView" />
+        android:id="@+id/gomme"
+        android:layout_above="@+id/prendfeVideo"
+        android:layout_alignLeft="@+id/crayon"
+        android:layout_alignStart="@+id/crayon"
+        android:visibility="invisible"
+        android:background="@mipmap/gomme"
+        android:layout_alignTop="@+id/ouvrirVideo" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/couleur"
+        android:layout_below="@+id/gomme"
+        android:layout_alignLeft="@+id/gomme"
+        android:layout_alignStart="@+id/gomme"
+        android:visibility="visible"
+        android:background="@android:color/black"/>
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/taille"
+        android:layout_below="@+id/couleur"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:visibility="invisible" />
+
+    <FrameLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:visibility="invisible"
+        android:id="@+id/layout">
+
+        <view
+            android:layout_width="512dp"
+            android:layout_height="266dp"
+            class="com.zebra.mommywhereismyzebra.CustomView"
+            android:id="@+id/view"
+            android:layout_gravity="left|top"
+            android:visibility="invisible" />
+    </FrameLayout>
+
+
 </RelativeLayout>
