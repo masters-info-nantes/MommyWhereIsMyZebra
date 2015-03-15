@@ -2,6 +2,7 @@ package com.zebra.mommywhereismyzebra;
 
 import android.app.Activity;
 import android.content.DialogInterface;
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -13,7 +14,24 @@ import android.widget.Button;
 import android.content.Context;
 import android.graphics.Paint;
 import android.widget.FrameLayout;
+import android.widget.HorizontalScrollView;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.os.Bundle;
+import android.os.Environment;
+import android.app.Activity;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.view.Gravity;
+import android.view.View;
+import android.view.ViewGroup.LayoutParams;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.SeekBar;
+import android.widget.Toast;
 
+import java.io.File;
 import java.util.Random;
 
 public class MainActivity extends Activity {
@@ -21,22 +39,28 @@ public class MainActivity extends Activity {
     private Button ouvrirVideo;
     private Button prendreVideo;
 
-    private Button crayon;
-    private Button gomme;
-    private Button couleur;
-    private Button taille;
+    private ImageButton crayon;
+    private ImageButton gomme;
+    private ImageButton couleur;
 
     private CustomView zoneDessin;
     private FrameLayout l;
 
-    private MenuItem afficherDessin;
-    private MenuItem afficherImage;
-    private MenuItem afficherCalque;
-    private MenuItem flecheDroite;
-    private MenuItem flecheGauche;
+    boolean listeAffiche;
+    boolean boutonsAffiche;
+
+    private HorizontalScrollView mesImages;
+    private HorizontalScrollView mesboutons;
+
+    private SeekBar taille;
+
     private MenuItem settings;
-    private MenuItem oeil;
-    private MenuItem undo;
+
+
+    private ImageButton afficherMesImages;
+    private ImageButton afficherMesBoutons;
+
+    private LinearLayout g;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,14 +70,23 @@ public class MainActivity extends Activity {
         ouvrirVideo = (Button) findViewById(R.id.ouvrirVideo);
         prendreVideo = (Button) findViewById(R.id.prendfeVideo);
 
-        crayon = (Button) findViewById(R.id.crayon);
-        gomme = (Button) findViewById(R.id.gomme);
-        couleur = (Button) findViewById(R.id.couleur);
-        taille = (Button) findViewById(R.id.taille);
+        crayon = (ImageButton) findViewById(R.id.crayon);
+        gomme = (ImageButton) findViewById(R.id.gomme);
+        couleur = (ImageButton) findViewById(R.id.couleur);
+
+        taille = (SeekBar)findViewById(R.id.taille);
 
         zoneDessin = (CustomView)findViewById(R.id.view);
         l = (FrameLayout)findViewById(R.id.layout);
 
+        mesImages = (HorizontalScrollView)findViewById(R.id.maliste);
+        mesboutons = (HorizontalScrollView)findViewById(R.id.mesBoutons);
+
+        afficherMesImages = (ImageButton)findViewById(R.id.imageButton);
+        afficherMesBoutons = (ImageButton)findViewById(R.id.affciherBoutons);
+
+        listeAffiche = false;
+        boutonsAffiche = false;
 
         View.OnClickListener cl = new View.OnClickListener() {
 
@@ -69,14 +102,6 @@ public class MainActivity extends Activity {
 
                 l.setVisibility(View.VISIBLE);
                 zoneDessin.setVisibility(View.VISIBLE);
-
-                afficherDessin.setVisible(true);
-                afficherImage.setVisible(true);
-                afficherCalque.setVisible(true);
-                flecheGauche.setVisible(true);
-                flecheDroite.setVisible(true);
-                oeil.setVisible(true);
-                undo.setVisible(true);
             }
         };
 
@@ -90,14 +115,7 @@ public class MainActivity extends Activity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
-        afficherDessin = (MenuItem)menu.findItem(R.id.afficher_dessin);
-        afficherCalque = (MenuItem)menu.findItem(R.id.afficher_pelures);
-        afficherImage = (MenuItem)menu.findItem(R.id.afficher_image);
-        flecheDroite = (MenuItem)menu.findItem(R.id.f_droite);
-        flecheGauche = (MenuItem)menu.findItem(R.id.f_gauche);
         settings = (MenuItem)menu.findItem(R.id.action_settings);
-        oeil = (MenuItem)menu.findItem(R.id.previsualisation_rapide);
-        undo = (MenuItem)menu.findItem(R.id.undo);
 
         return true;
     }
@@ -115,6 +133,44 @@ public class MainActivity extends Activity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void afficherliste(View v){
+        if(listeAffiche){
+            mesImages.setVisibility(View.INVISIBLE);
+            afficherMesImages.setY(afficherMesImages.getY() + 210);
+            v.invalidate();
+            listeAffiche = false;
+            afficherMesImages.setImageResource(R.mipmap.up);
+            //@android:drawable/arrow_up_float
+        }
+        else {
+            listeAffiche = true;
+            mesImages.setVisibility(View.VISIBLE);
+            afficherMesImages.setY(afficherMesImages.getY() - 210);
+            v.invalidate();
+            afficherMesImages.setImageResource(R.mipmap.down);
+
+        }
+    }
+
+    public void afficherBoutons(View v){
+        if(boutonsAffiche){
+            mesboutons.setVisibility(View.INVISIBLE);
+            afficherMesBoutons.setY(afficherMesBoutons.getY() - 120);
+            v.invalidate();
+            boutonsAffiche = false;
+            afficherMesBoutons.setImageResource(R.mipmap.down);
+            //@android:drawable/arrow_up_float
+        }
+        else {
+            boutonsAffiche = true;
+            mesboutons.setVisibility(View.VISIBLE);
+            afficherMesBoutons.setY(afficherMesBoutons.getY() + 120);
+            v.invalidate();
+            afficherMesBoutons.setImageResource(R.mipmap.up);
+
+        }
     }
 
 }

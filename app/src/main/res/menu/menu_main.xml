@@ -2,11 +2,4 @@
     xmlns:tools="http://schemas.android.com/tools" tools:context=".MainActivity">
     <item android:id="@+id/action_settings" android:title="@string/action_settings"
         android:orderInCategory="100" android:showAsAction="never" />
-    <item android:id="@+id/afficher_dessin" android:icon="@mipmap/dessin" android:orderInCategory="100" android:showAsAction="always" android:title="dessin" android:visible="false" android:enabled="true"/>
-    <item android:id="@+id/afficher_pelures" android:icon="@mipmap/calque" android:orderInCategory="100" android:showAsAction="always" android:title="calque" android:visible="false" android:enabled="true"/>
-    <item android:id="@+id/afficher_image" android:icon="@mipmap/film" android:orderInCategory="100" android:showAsAction="always" android:title="film" android:visible="false" android:enabled="true"/>
-    <item android:id="@+id/previsualisation_rapide" android:icon="@mipmap/oeil" android:orderInCategory="100" android:showAsAction="always" android:title="film" android:visible="false" android:enabled="true"/>
-    <item android:id="@+id/undo" android:icon="@mipmap/undo" android:orderInCategory="100" android:showAsAction="always" android:title="film" android:visible="false" android:enabled="true"/>
-    <item android:id="@+id/f_gauche" android:icon="@mipmap/fleche_gauche" android:orderInCategory="100" android:showAsAction="always" android:title="FG" android:visible="false" android:enabled="true"/>
-    <item android:id="@+id/f_droite" android:icon="@mipmap/fleche_droite" android:orderInCategory="100" android:showAsAction="always" android:title="FD" android:visible="false" android:enabled="true"/>
 </menu>

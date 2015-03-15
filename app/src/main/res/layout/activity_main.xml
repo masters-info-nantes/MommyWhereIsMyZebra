@@ -1,24 +1,125 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity"
     android:id="@+id/myname"
-    android:clickable="true">
+    android:clickable="true"
+    android:background="@android:color/background_light"
+    android:layout_column="10"
+    android:layout_row="6">
+
+    <ImageButton
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:id="@+id/couleur"
+        android:layout_below="@+id/gomme"
+        android:layout_alignLeft="@+id/gomme"
+        android:layout_alignStart="@+id/gomme"
+        android:visibility="invisible"
+        android:src="@android:color/black"
+        android:layout_x="570dp"
+        android:layout_y="140dp" />
+
+    <FrameLayout
+        android:layout_width="560dp"
+        android:layout_height="330dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:visibility="invisible"
+        android:id="@+id/layout"
+        android:layout_toLeftOf="@+id/crayon"
+        android:layout_toStartOf="@+id/crayon">
+
+        <view
+            android:layout_width="560dp"
+            android:layout_height="330dp"
+            class="com.zebra.mommywhereismyzebra.CustomView"
+            android:id="@+id/view"
+            android:layout_gravity="center_horizontal|top"
+            android:visibility="invisible"
+            android:layout_x="0dp"
+            android:layout_y="0dp" />
+    </FrameLayout>
+
+    <HorizontalScrollView
+        android:layout_width="570dp"
+        android:layout_height="70dp"
+        android:id="@+id/maliste"
+        android:layout_below="@+id/prendfeVideo"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_x="0dp"
+        android:layout_y="260dp"
+        android:background="@android:color/black"
+        android:visibility="invisible">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="@android:color/black">
+
+        </LinearLayout>
+
+    </HorizontalScrollView>
+
+    <ImageButton
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:id="@+id/gomme"
+        android:layout_above="@+id/prendfeVideo"
+        android:layout_alignLeft="@+id/crayon"
+        android:layout_alignStart="@+id/crayon"
+        android:visibility="invisible"
+        android:src="@mipmap/gomme"
+        android:layout_alignTop="@+id/ouvrirVideo"
+        android:layout_gravity="right|center_vertical"
+        android:layout_x="570dp"
+        android:layout_y="90dp" />
+
+    <ImageButton
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:id="@+id/crayon"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:visibility="invisible"
+        android:layout_above="@+id/gomme"
+        android:layout_alignLeft="@+id/taille"
+        android:layout_alignStart="@+id/taille"
+        android:clickable="true"
+        android:enabled="true"
+        android:focusable="false"
+        android:src="@mipmap/crayon"
+        android:layout_gravity="right|top"
+        android:layout_x="570dp"
+        android:layout_y="40dp" />
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="150dp"
+        android:layout_height="70dp"
         android:text="Prendre une vidéo"
         android:id="@+id/prendfeVideo"
         android:layout_below="@+id/ouvrirVideo"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="60dp" />
+        android:layout_marginTop="60dp"
+        android:layout_gravity="center"
+        android:layout_x="240dp"
+        android:layout_y="171dp" />
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="150dp"
+        android:layout_height="70dp"
         android:text="Ouvrir vidéo"
         android:id="@+id/ouvrirVideo"
         android:layout_marginTop="47dp"
@@ -31,75 +132,99 @@
         android:layout_alignEnd="@+id/prendfeVideo"
         android:visibility="visible"
         android:nestedScrollingEnabled="false"
-        android:onClick="setListFooter" />
+        android:onClick="setListFooter"
+        android:layout_gravity="center_horizontal|top"
+        android:layout_x="240dp"
+        android:layout_y="70dp" />
 
-    <Button
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/crayon"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:visibility="invisible"
-        android:layout_above="@+id/gomme"
-        android:layout_alignLeft="@+id/taille"
-        android:layout_alignStart="@+id/taille"
-        android:clickable="true"
-        android:enabled="true"
-        android:focusable="false"
-        android:background="@mipmap/crayon" />
 
-    <Button
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/gomme"
-        android:layout_above="@+id/prendfeVideo"
-        android:layout_alignLeft="@+id/crayon"
-        android:layout_alignStart="@+id/crayon"
-        android:visibility="invisible"
-        android:background="@mipmap/gomme"
-        android:layout_alignTop="@+id/ouvrirVideo" />
+    <ImageButton
+        android:layout_width="30dp"
+        android:layout_height="20dp"
+        android:id="@+id/imageButton"
+        android:layout_x="300dp"
+        android:layout_y="310dp"
+        android:src="@mipmap/up"
+        android:background="@xml/test"
+        android:onClick="afficherliste"/>
 
-    <Button
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/couleur"
-        android:layout_below="@+id/gomme"
-        android:layout_alignLeft="@+id/gomme"
-        android:layout_alignStart="@+id/gomme"
-        android:visibility="visible"
-        android:background="@android:color/black"/>
+    <ImageButton
+        android:layout_width="30dp"
+        android:layout_height="20dp"
+        android:id="@+id/affciherBoutons"
+        android:layout_x="300dp"
+        android:layout_y="0dp"
+        android:background="@xml/test"
+        android:src="@mipmap/down"
+        android:onClick="afficherBoutons" />
 
-    <Button
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <SeekBar
+        android:layout_width="50dp"
+        android:layout_height="30dp"
         android:id="@+id/taille"
-        android:layout_below="@+id/couleur"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
+        android:layout_x="565dp"
+        android:layout_y="200dp"
+        android:rotation="270"
+        android:clickable="true"
+        android:progressDrawable="@xml/a"
         android:visibility="invisible" />
 
-    <FrameLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:visibility="invisible"
-        android:id="@+id/layout">
+    <HorizontalScrollView
+        android:layout_width="360dp"
+        android:layout_height="50dp"
+        android:id="@+id/mesBoutons"
+        android:layout_x="140dp"
+        android:layout_y="0dp"
+        android:visibility="invisible">
 
-        <view
-            android:layout_width="512dp"
-            android:layout_height="266dp"
-            class="com.zebra.mommywhereismyzebra.CustomView"
-            android:id="@+id/view"
-            android:layout_gravity="left|top"
-            android:visibility="invisible" />
-    </FrameLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+            <ImageButton
+                android:layout_width="50dp"
+                android:layout_height="40dp"
+                android:id="@+id/dessin"
+                android:src="@mipmap/dessin"/>
+
+            <ImageButton
+                android:layout_width="50dp"
+                android:layout_height="40dp"
+                android:id="@+id/calque"
+                android:src="@mipmap/calque"/>
+
+            <ImageButton
+                android:layout_width="50dp"
+                android:layout_height="40dp"
+                android:id="@+id/film"
+                android:src="@mipmap/film"/>
+
+            <ImageButton
+                android:layout_width="50dp"
+                android:layout_height="40dp"
+                android:id="@+id/precedent"
+                android:src="@mipmap/fleche_gauche"/>
+
+            <ImageButton
+                android:layout_width="50dp"
+                android:layout_height="40dp"
+                android:id="@+id/suivant"
+                android:src="@mipmap/fleche_droite"/>
+
+            <ImageButton
+                android:layout_width="50dp"
+                android:layout_height="40dp"
+                android:id="@+id/previsualisation"
+                android:src="@mipmap/oeil"/>
+
+            <ImageButton
+                android:layout_width="50dp"
+                android:layout_height="40dp"
+                android:id="@+id/undo"
+                android:src="@mipmap/undo" />
+        </LinearLayout>
+    </HorizontalScrollView>
 
 
-</RelativeLayout>
+</AbsoluteLayout>
