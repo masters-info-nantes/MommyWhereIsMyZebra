@@ -2,14 +2,17 @@ package com.zebra.mommywhereismyzebra;
 
 import android.app.Activity;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.content.Context;
 import android.graphics.Paint;
@@ -49,6 +52,8 @@ public class MainActivity extends Activity {
     boolean listeAffiche;
     boolean boutonsAffiche;
 
+    int couleurCourante;
+
     private HorizontalScrollView mesImages;
     private HorizontalScrollView mesboutons;
 
@@ -65,6 +70,9 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        couleurCourante = Color.BLACK;
+
         setContentView(R.layout.activity_main);
 
         ouvrirVideo = (Button) findViewById(R.id.ouvrirVideo);
@@ -105,9 +113,19 @@ public class MainActivity extends Activity {
             }
         };
 
+        View.OnClickListener cl2 = new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
+                startActivityForResult(intent, 101);
+            }
+        };
+
 
         ouvrirVideo.setOnClickListener(cl);
-        prendreVideo.setOnClickListener(cl);
+        prendreVideo.setOnClickListener(cl2);
     }
 
 
@@ -171,6 +189,27 @@ public class MainActivity extends Activity {
             afficherMesBoutons.setImageResource(R.mipmap.up);
 
         }
+    }
+
+    public void changerCouleur(View v) {
+
+        ColorPickerDialog p = new ColorPickerDialog(this,new ColorPickerDialog.OnColorChangedListener() {
+            @Override
+            public void colorChanged(int color) {
+                couleur.setBackgroundColor(color);
+                zoneDessin.setColor(color);
+                couleurCourante = color;
+            }
+        }, Color.BLACK);
+        p.show();
+    }
+
+    public void utiliserCrayon(View v){
+        zoneDessin.setColor(couleurCourante);
+    }
+
+    public void utiliserGomme(View v){
+        zoneDessin.setColor(Color.TRANSPARENT);
     }
 
 }

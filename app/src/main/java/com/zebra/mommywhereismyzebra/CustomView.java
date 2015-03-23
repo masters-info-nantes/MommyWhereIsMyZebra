@@ -32,6 +32,7 @@ public class CustomView extends View{
     public CustomView(Context c){
         super(c);
         context=c;
+
         mPath = new Path();
         mBitmapPaint = new Paint(Paint.DITHER_FLAG);
         circlePaint = new Paint();
@@ -44,7 +45,7 @@ public class CustomView extends View{
         mPaint = new Paint();
         mPaint.setAntiAlias(true);
         mPaint.setDither(true);
-        mPaint.setColor(Color.GREEN);
+        mPaint.setColor(Color.BLACK);
         mPaint.setStyle(Paint.Style.STROKE);
         mPaint.setStrokeJoin(Paint.Join.ROUND);
         mPaint.setStrokeCap(Paint.Cap.ROUND);
@@ -67,7 +68,7 @@ public class CustomView extends View{
         mPaint = new Paint();
         mPaint.setAntiAlias(true);
         mPaint.setDither(true);
-        mPaint.setColor(Color.GREEN);
+        mPaint.setColor(Color.BLACK);
         mPaint.setStyle(Paint.Style.STROKE);
         mPaint.setStrokeJoin(Paint.Join.ROUND);
         mPaint.setStrokeCap(Paint.Cap.ROUND);
@@ -89,7 +90,7 @@ public class CustomView extends View{
         mPaint = new Paint();
         mPaint.setAntiAlias(true);
         mPaint.setDither(true);
-        mPaint.setColor(Color.GREEN);
+        mPaint.setColor(Color.BLACK);
         mPaint.setStyle(Paint.Style.STROKE);
         mPaint.setStrokeJoin(Paint.Join.ROUND);
         mPaint.setStrokeCap(Paint.Cap.ROUND);
@@ -111,7 +112,6 @@ public class CustomView extends View{
             canvas.drawBitmap( mBitmap, 0, 0, mBitmapPaint);
 
             canvas.drawPath( mPath,  mPaint);
-
             canvas.drawPath( circlePath,  circlePaint);
     }
 
@@ -142,7 +142,7 @@ public class CustomView extends View{
         circlePath.reset();
         // commit the path to our offscreen
         mCanvas.drawPath(mPath,  mPaint);
-        // kill this so we don't double draw
+        // kill this so we don'ambilwarna_dialog double draw
         mPath.reset();
     }
 
@@ -168,6 +168,10 @@ public class CustomView extends View{
         }
         return true;
     }
+
+    public void setColor(int color) {
+        mPaint.setColor(color);
+    }
     /*
     @Override
     public boolean onTouchEvent(MotionEvent event){
@@ -180,6 +184,10 @@ public class CustomView extends View{
         invalidate();
         return true;
     }*/
+
+    public void gomme(){
+
+    }
 
 
 }
