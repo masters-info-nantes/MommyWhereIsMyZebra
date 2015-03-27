@@ -1,6 +1,7 @@
 package com.zebra.mommywhereismyzebra;
 
 import android.app.Activity;
+import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -110,6 +111,10 @@ public class MainActivity extends Activity {
 
                 l.setVisibility(View.VISIBLE);
                 zoneDessin.setVisibility(View.VISIBLE);
+
+                Intent fileIntent = new Intent(Intent.ACTION_GET_CONTENT);
+                fileIntent.setType("gagt/sdf");
+                startActivity(fileIntent);
             }
         };
 
