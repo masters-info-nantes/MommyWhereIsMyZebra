@@ -1,0 +1,50 @@
+<AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".First"
+    android:id="@+id/myname"
+    android:clickable="true"
+    android:background="@android:color/background_light"
+    android:layout_column="10"
+    android:layout_row="6">
+
+
+
+
+    <Button
+        android:layout_width="150dp"
+        android:layout_height="70dp"
+        android:text="Prendre une vidéo"
+        android:id="@+id/prendreVideo"
+        android:layout_below="@+id/ouvrirVideo"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="60dp"
+        android:layout_gravity="center"
+        android:layout_x="240dp"
+        android:layout_y="171dp"
+        android:onClick="captureVideo" />
+
+    <Button
+        android:layout_width="150dp"
+        android:layout_height="70dp"
+        android:text="Ouvrir vidéo"
+        android:id="@+id/ouvrirVideo"
+        android:layout_marginTop="47dp"
+        android:clickable="true"
+        android:elegantTextHeight="true"
+        android:enabled="true"
+        android:focusable="false"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/prendreVideo"
+        android:layout_alignEnd="@+id/prendreVideo"
+        android:visibility="visible"
+        android:nestedScrollingEnabled="false"
+        android:onClick="setListFooter"
+        android:layout_gravity="center_horizontal|top"
+        android:layout_x="240dp"
+        android:layout_y="70dp" />
+
+
+</AbsoluteLayout>

@@ -2,4 +2,7 @@
     <string name="app_name"></string>
     <string name="action_settings">Configuration</string>
     <string name="test">Zebra</string>
+    <string name="title_activity_first">first</string>
+
+    <string name="hello_world">Hello world!</string>
 </resources>

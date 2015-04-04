@@ -1,59 +1,35 @@
 package com.zebra.mommywhereismyzebra;
 
 import android.app.Activity;
-import android.content.ActivityNotFoundException;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.provider.MediaStore;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.WindowManager;
-import android.widget.Button;
-import android.content.Context;
-import android.graphics.Paint;
 import android.widget.FrameLayout;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.os.Bundle;
-import android.os.Environment;
-import android.app.Activity;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.view.Gravity;
-import android.view.View;
-import android.view.ViewGroup.LayoutParams;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.SeekBar;
-import android.widget.Toast;
-
-import java.io.File;
-import java.util.Random;
 
 public class MainActivity extends Activity {
-
-    private Button ouvrirVideo;
-    private Button prendreVideo;
 
     private ImageButton crayon;
     private ImageButton gomme;
     private ImageButton couleur;
 
     private CustomView zoneDessin;
-    private FrameLayout l;
+    private FrameLayout layoutZoneDessin;
 
     boolean listeAffiche;
     boolean boutonsAffiche;
 
     int couleurCourante;
+    int index;
 
     private HorizontalScrollView mesImages;
     private HorizontalScrollView mesboutons;
@@ -76,9 +52,6 @@ public class MainActivity extends Activity {
 
         setContentView(R.layout.activity_main);
 
-        ouvrirVideo = (Button) findViewById(R.id.ouvrirVideo);
-        prendreVideo = (Button) findViewById(R.id.prendfeVideo);
-
         crayon = (ImageButton) findViewById(R.id.crayon);
         gomme = (ImageButton) findViewById(R.id.gomme);
         couleur = (ImageButton) findViewById(R.id.couleur);
@@ -86,53 +59,19 @@ public class MainActivity extends Activity {
         taille = (SeekBar)findViewById(R.id.taille);
 
         zoneDessin = (CustomView)findViewById(R.id.view);
-        l = (FrameLayout)findViewById(R.id.layout);
+        layoutZoneDessin = (FrameLayout)findViewById(R.id.layoutDessin);
 
         mesImages = (HorizontalScrollView)findViewById(R.id.maliste);
         mesboutons = (HorizontalScrollView)findViewById(R.id.mesBoutons);
 
+        index = 0;
+        g = (LinearLayout)findViewById(R.id.layoutImages);
         afficherMesImages = (ImageButton)findViewById(R.id.imageButton);
         afficherMesBoutons = (ImageButton)findViewById(R.id.affciherBoutons);
 
         listeAffiche = false;
         boutonsAffiche = false;
-
-        View.OnClickListener cl = new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                ouvrirVideo.setVisibility(View.INVISIBLE);
-                prendreVideo.setVisibility(View.INVISIBLE);
-
-                crayon.setVisibility(View.VISIBLE);
-                gomme.setVisibility(View.VISIBLE);
-                couleur.setVisibility(View.VISIBLE);
-                taille.setVisibility(View.VISIBLE);
-
-                l.setVisibility(View.VISIBLE);
-                zoneDessin.setVisibility(View.VISIBLE);
-
-                Intent fileIntent = new Intent(Intent.ACTION_GET_CONTENT);
-                fileIntent.setType("gagt/sdf");
-                startActivity(fileIntent);
-            }
-        };
-
-        View.OnClickListener cl2 = new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-
-                Intent intent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
-                startActivityForResult(intent, 101);
-            }
-        };
-
-
-        ouvrirVideo.setOnClickListener(cl);
-        prendreVideo.setOnClickListener(cl2);
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -217,4 +156,59 @@ public class MainActivity extends Activity {
         zoneDessin.setColor(Color.TRANSPARENT);
     }
 
+    public void changerImage(View v){
+        //layoutZoneDessin.setBackground(((ImageView) v).getDrawable());
+        layoutZoneDessin.setBackground(((ImageView) v).getBackground());
+
+        for(int i = 0; i<g.getChildCount(); i++){
+            if(((ImageView) v).getId() == g.getChildAt(i).getId()){
+                index = i;
+            }
+        }
+
+        Drawable myDrawable = ((ImageView)g.getChildAt(index)).getDrawable();
+        if(myDrawable != null) {
+            Bitmap myLogo = ((BitmapDrawable) myDrawable).getBitmap();
+            zoneDessin.setmBitmap(myLogo);
+        }
+        else{
+            Bitmap myLogo = Bitmap.createBitmap(50, 50, Bitmap.Config.ARGB_8888);
+            zoneDessin.setmBitmap(myLogo);
+        }
+
+    }
+
+    public void imageSuivante(View v){
+        if(index < g.getChildCount()-1){
+            index++;
+            //layoutZoneDessin.setBackground(((ImageView)g.getChildAt(index)).getDrawable());
+            Drawable myDrawable = ((ImageView)g.getChildAt(index)).getDrawable();
+            if(myDrawable != null) {
+                Bitmap myLogo = ((BitmapDrawable) myDrawable).getBitmap();
+                zoneDessin.setmBitmap(myLogo);
+            }
+            else{
+                Bitmap myLogo = Bitmap.createBitmap(50, 50, Bitmap.Config.ARGB_8888);
+                zoneDessin.setmBitmap(myLogo);
+            }
+            layoutZoneDessin.setBackground(((ImageView) g.getChildAt(index)).getBackground());
+        }
+    }
+
+    public void imagePrecedente(View v){
+        if(index >0){
+            index--;
+            Drawable myDrawable = ((ImageView)g.getChildAt(index)).getDrawable();
+            if(myDrawable != null) {
+                Bitmap myLogo = ((BitmapDrawable) myDrawable).getBitmap();
+                zoneDessin.setmBitmap(myLogo);
+            }
+            else{
+                Bitmap myLogo = Bitmap.createBitmap(50, 50, Bitmap.Config.ARGB_8888);
+                zoneDessin.setmBitmap(myLogo);
+            }
+            //layoutZoneDessin.setBackground(((ImageView)g.getChildAt(index)).getDrawable());
+            layoutZoneDessin.setBackground(((ImageView) g.getChildAt(index)).getBackground());
+        }
+    }
 }

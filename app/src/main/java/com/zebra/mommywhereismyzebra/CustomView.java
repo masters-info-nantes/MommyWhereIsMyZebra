@@ -7,10 +7,15 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PointF;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.util.AttributeSet;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+
 import java.util.Random;
 
 /**
@@ -100,9 +105,9 @@ public class CustomView extends View{
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
-
         mBitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
         mCanvas = new Canvas(mBitmap);
+
     }
         @Override
 
@@ -189,5 +194,13 @@ public class CustomView extends View{
 
     }
 
+    public void setmBitmap(Bitmap b){
 
+        Bitmap temp = Bitmap.createBitmap(b);
+        temp = Bitmap.createScaledBitmap(b, mCanvas.getWidth(), mCanvas.getHeight(), false);
+        mBitmap = temp.copy(Bitmap.Config.ARGB_8888, true);
+        //mBitmap = Bitmap.createBitmap(mBitmap.getWidth(), mBitmap.getHeight(), Bitmap.Config.ARGB_8888);
+        mCanvas = new Canvas(mBitmap);
+        this.invalidate();
+    }
 }
