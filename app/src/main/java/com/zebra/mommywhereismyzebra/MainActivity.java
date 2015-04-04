@@ -1,20 +1,27 @@
 package com.zebra.mommywhereismyzebra;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.SeekBar;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends Activity {
 
@@ -25,11 +32,11 @@ public class MainActivity extends Activity {
     private CustomView zoneDessin;
     private FrameLayout layoutZoneDessin;
 
-    boolean listeAffiche;
-    boolean boutonsAffiche;
+    private boolean listeAffiche;
+    private boolean boutonsAffiche;
 
-    int couleurCourante;
-    int index;
+    private int couleurCourante;
+    private int index;
 
     private HorizontalScrollView mesImages;
     private HorizontalScrollView mesboutons;
@@ -43,11 +50,17 @@ public class MainActivity extends Activity {
     private ImageButton afficherMesBoutons;
 
     private LinearLayout g;
+    private RelativeLayout imageFond;
+
+    private List<ImageView> pelureOignons;
+
+    private int nbPeluresOignons = 5;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        pelureOignons = new ArrayList<ImageView>();
         couleurCourante = Color.BLACK;
 
         setContentView(R.layout.activity_main);
@@ -68,6 +81,13 @@ public class MainActivity extends Activity {
         g = (LinearLayout)findViewById(R.id.layoutImages);
         afficherMesImages = (ImageButton)findViewById(R.id.imageButton);
         afficherMesBoutons = (ImageButton)findViewById(R.id.affciherBoutons);
+
+        imageFond = (RelativeLayout)findViewById(R.id.imageFond);
+
+        for(int i = 0; i < imageFond.getChildCount(); i++){
+            ImageView v = (ImageView)imageFond.getChildAt(i);
+            pelureOignons.add(v);
+        }
 
         listeAffiche = false;
         boutonsAffiche = false;
@@ -104,7 +124,6 @@ public class MainActivity extends Activity {
             v.invalidate();
             listeAffiche = false;
             afficherMesImages.setImageResource(R.mipmap.up);
-            //@android:drawable/arrow_up_float
         }
         else {
             listeAffiche = true;
@@ -112,7 +131,6 @@ public class MainActivity extends Activity {
             afficherMesImages.setY(afficherMesImages.getY() - 210);
             v.invalidate();
             afficherMesImages.setImageResource(R.mipmap.down);
-
         }
     }
 
@@ -153,12 +171,12 @@ public class MainActivity extends Activity {
     }
 
     public void utiliserGomme(View v){
-        zoneDessin.setColor(Color.TRANSPARENT);
+        zoneDessin.gomme();
     }
 
     public void changerImage(View v){
         //layoutZoneDessin.setBackground(((ImageView) v).getDrawable());
-        layoutZoneDessin.setBackground(((ImageView) v).getBackground());
+        imageFond.setBackground(((ImageView) v).getBackground());
 
         for(int i = 0; i<g.getChildCount(); i++){
             if(((ImageView) v).getId() == g.getChildAt(i).getId()){
@@ -175,7 +193,7 @@ public class MainActivity extends Activity {
             Bitmap myLogo = Bitmap.createBitmap(50, 50, Bitmap.Config.ARGB_8888);
             zoneDessin.setmBitmap(myLogo);
         }
-
+        changerPeluresOignon();
     }
 
     public void imageSuivante(View v){
@@ -191,8 +209,9 @@ public class MainActivity extends Activity {
                 Bitmap myLogo = Bitmap.createBitmap(50, 50, Bitmap.Config.ARGB_8888);
                 zoneDessin.setmBitmap(myLogo);
             }
-            layoutZoneDessin.setBackground(((ImageView) g.getChildAt(index)).getBackground());
+            imageFond.setBackground(((ImageView) g.getChildAt(index)).getBackground());
         }
+        changerPeluresOignon();
     }
 
     public void imagePrecedente(View v){
@@ -208,7 +227,26 @@ public class MainActivity extends Activity {
                 zoneDessin.setmBitmap(myLogo);
             }
             //layoutZoneDessin.setBackground(((ImageView)g.getChildAt(index)).getDrawable());
-            layoutZoneDessin.setBackground(((ImageView) g.getChildAt(index)).getBackground());
+            imageFond.setBackground(((ImageView) g.getChildAt(index)).getBackground());
+        }
+        changerPeluresOignon();
+    }
+
+    public void changerPeluresOignon(){
+        int debut = index -1;
+        int nb = nbPeluresOignons;
+        float transp = 0.85f;
+        for(int i = pelureOignons.size() - 1; i>=0; i--){
+            if(debut>=0 && nb>0){
+                pelureOignons.get(i).setBackground(((ImageView) g.getChildAt(debut)).getDrawable());
+                pelureOignons.get(i).setAlpha(transp);
+                transp -= 0.1f;
+                debut--;
+                nb--;
+            }
+            else{
+                pelureOignons.get(i).setBackground(null);
+            }
         }
     }
 }

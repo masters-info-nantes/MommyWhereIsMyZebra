@@ -7,6 +7,8 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PointF;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.util.Log;
@@ -33,6 +35,8 @@ public class CustomView extends View{
     private Paint circlePaint;
     private Path circlePath;
     private Paint       mPaint;
+    private boolean gomme = false;
+    private boolean ligne = false;
 
     public CustomView(Context c){
         super(c);
@@ -115,9 +119,11 @@ public class CustomView extends View{
             super.onDraw(canvas);
 
             canvas.drawBitmap( mBitmap, 0, 0, mBitmapPaint);
-
-            canvas.drawPath( mPath,  mPaint);
+            if(!gomme) {
+                canvas.drawPath(mPath, mPaint);
+            }
             canvas.drawPath( circlePath,  circlePaint);
+            mCanvas.drawPath(mPath,  mPaint);
     }
 
     private float mX, mY;
@@ -131,6 +137,7 @@ public class CustomView extends View{
         mY = y;
     }
     private void touch_move(float x, float y) {
+        ligne = true;
         float dx = Math.abs(x - mX);
         float dy = Math.abs(y - mY);
         if (dx >= TOUCH_TOLERANCE || dy >= TOUCH_TOLERANCE) {
@@ -143,12 +150,20 @@ public class CustomView extends View{
         }
     }
     private void touch_up() {
-        mPath.lineTo(mX, mY);
+
         circlePath.reset();
         // commit the path to our offscreen
-        mCanvas.drawPath(mPath,  mPaint);
+        if(!ligne){
+            mCanvas.drawPoint(mX, mY, mPaint);
+        }
+        else {
+            mPath.lineTo(mX, mY);
+            mCanvas.drawPath(mPath, mPaint);
+            mPath.reset();
+        }
         // kill this so we don'ambilwarna_dialog double draw
-        mPath.reset();
+        ligne = false;
+
     }
 
 
@@ -175,23 +190,14 @@ public class CustomView extends View{
     }
 
     public void setColor(int color) {
+        gomme = false;
+        mPaint.setXfermode(null);
         mPaint.setColor(color);
     }
-    /*
-    @Override
-    public boolean onTouchEvent(MotionEvent event){
-        x = event.getX();
-        y = event.getY();
-        p.lineTo(x, y);
-        Random rand = new Random();
-        paint.setARGB(255, rand.nextInt(256), rand.nextInt(256), rand.nextInt(256));
-        def.drawPath(p, paint);
-        invalidate();
-        return true;
-    }*/
 
     public void gomme(){
-
+        gomme = true;
+        mPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
     }
 
     public void setmBitmap(Bitmap b){
@@ -199,7 +205,6 @@ public class CustomView extends View{
         Bitmap temp = Bitmap.createBitmap(b);
         temp = Bitmap.createScaledBitmap(b, mCanvas.getWidth(), mCanvas.getHeight(), false);
         mBitmap = temp.copy(Bitmap.Config.ARGB_8888, true);
-        //mBitmap = Bitmap.createBitmap(mBitmap.getWidth(), mBitmap.getHeight(), Bitmap.Config.ARGB_8888);
         mCanvas = new Canvas(mBitmap);
         this.invalidate();
     }

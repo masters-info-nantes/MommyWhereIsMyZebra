@@ -1,14 +1,12 @@
 <AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    tools:context=".MainActivity"
     android:id="@+id/myname"
     android:clickable="true"
-    android:background="@android:color/background_light"
     android:layout_column="10"
-    android:layout_row="6">
+    android:layout_row="6"
+    android:background="@android:color/background_light">
 
     <ImageButton
         style="?android:attr/buttonStyleSmall"
@@ -24,21 +22,73 @@
         android:layout_y="140dp"
         android:onClick="changerCouleur" />
 
+    <RelativeLayout
+        android:layout_width="535dp"
+        android:layout_height="fill_parent"
+        android:background="@mipmap/image001"
+        android:id="@+id/imageFond">
+
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/calque1" />
+
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/calque2" />
+
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/calque3" />
+
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/calque4" />
+
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/calque5" />
+
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/calque6" />
+
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/calque7" />
+
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/calque8" />
+
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/calque9" />
+
+    </RelativeLayout>
+
     <FrameLayout
         android:layout_width="535dp"
-        android:layout_height="330dp"
+        android:layout_height="369dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:visibility="visible"
         android:id="@+id/layoutDessin"
         android:layout_toLeftOf="@+id/crayon"
-        android:layout_toStartOf="@+id/crayon"
-        android:background="@mipmap/image001">
+        android:layout_toStartOf="@+id/crayon">
 
         <view
-            android:layout_width="535dp"
-            android:layout_height="330dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             class="com.zebra.mommywhereismyzebra.CustomView"
             android:id="@+id/view"
             android:layout_gravity="center_horizontal|top"
@@ -49,7 +99,7 @@
     </FrameLayout>
 
     <HorizontalScrollView
-        android:layout_width="537dp"
+        android:layout_width="535dp"
         android:layout_height="70dp"
         android:id="@+id/maliste"
         android:layout_below="@+id/prendreVideo"
@@ -59,7 +109,7 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
         android:layout_x="0dp"
-        android:layout_y="260dp"
+        android:layout_y="290dp"
         android:visibility="invisible">
 
         <LinearLayout
@@ -228,8 +278,8 @@
         android:layout_width="30dp"
         android:layout_height="20dp"
         android:id="@+id/imageButton"
-        android:layout_x="300dp"
-        android:layout_y="310dp"
+        android:layout_x="260dp"
+        android:layout_y="340dp"
         android:src="@mipmap/up"
         android:background="@xml/test"
         android:onClick="afficherliste"/>
@@ -238,7 +288,7 @@
         android:layout_width="30dp"
         android:layout_height="20dp"
         android:id="@+id/affciherBoutons"
-        android:layout_x="300dp"
+        android:layout_x="260dp"
         android:layout_y="0dp"
         android:background="@xml/test"
         android:src="@mipmap/down"
