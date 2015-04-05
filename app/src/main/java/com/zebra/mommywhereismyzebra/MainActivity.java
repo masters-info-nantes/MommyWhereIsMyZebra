@@ -1,17 +1,15 @@
 package com.zebra.mommywhereismyzebra;
 
-import android.app.ActionBar;
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageButton;
@@ -55,6 +53,7 @@ public class MainActivity extends Activity {
     private List<ImageView> pelureOignons;
 
     private int nbPeluresOignons = 5;
+    ViewTailleCrayon affichageTailleCrayon;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +69,26 @@ public class MainActivity extends Activity {
         couleur = (ImageButton) findViewById(R.id.couleur);
 
         taille = (SeekBar)findViewById(R.id.taille);
+        affichageTailleCrayon = (ViewTailleCrayon)findViewById(R.id.view2);
+        taille.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                zoneDessin.changeStrokeWidth(progress);
+                affichageTailleCrayon.changeStrokeWidth(progress);
+                affichageTailleCrayon.drawLine();
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+
 
         zoneDessin = (CustomView)findViewById(R.id.view);
         layoutZoneDessin = (FrameLayout)findViewById(R.id.layoutDessin);
@@ -106,7 +125,7 @@ public class MainActivity extends Activity {
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
+        // as you specify style_seek_bar parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
@@ -155,15 +174,30 @@ public class MainActivity extends Activity {
 
     public void changerCouleur(View v) {
 
-        ColorPickerDialog p = new ColorPickerDialog(this,new ColorPickerDialog.OnColorChangedListener() {
+        /*ColorPickerDialog p = new ColorPickerDialog(this,new ColorPickerDialog.OnColorChangedListener() {
             @Override
             public void colorChanged(int color) {
                 couleur.setBackgroundColor(color);
                 zoneDessin.setColor(color);
+                affichageTailleCrayon.setColor(color);
+                affichageTailleCrayon.drawLine();
                 couleurCourante = color;
             }
         }, Color.BLACK);
-        p.show();
+        p.show();*/
+        ColorPicker colorPicker = new ColorPicker();
+        colorPicker.setColor(couleurCourante);
+        colorPicker.setCouleurChoisieListener(new ColorPicker.CouleurChoisieListener() {
+            @Override
+            public void CouleurChoisieListener(int newColor) {
+                couleur.setBackgroundColor(newColor);
+                zoneDessin.setColor(newColor);
+                affichageTailleCrayon.setColor(newColor);
+                affichageTailleCrayon.drawLine();
+                couleurCourante = newColor;
+            }
+        });
+        colorPicker.show(getFragmentManager(), "Color Picker");
     }
 
     public void utiliserCrayon(View v){
@@ -249,4 +283,5 @@ public class MainActivity extends Activity {
             }
         }
     }
+
 }

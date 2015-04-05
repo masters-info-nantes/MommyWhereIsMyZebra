@@ -18,12 +18,12 @@
         android:layout_alignStart="@+id/gomme"
         android:visibility="visible"
         android:background="@android:color/black"
-        android:layout_x="540dp"
-        android:layout_y="140dp"
+        android:layout_x="555dp"
+        android:layout_y="120dp"
         android:onClick="changerCouleur" />
 
     <RelativeLayout
-        android:layout_width="535dp"
+        android:layout_width="550dp"
         android:layout_height="fill_parent"
         android:background="@mipmap/image001"
         android:id="@+id/imageFond">
@@ -76,7 +76,7 @@
     </RelativeLayout>
 
     <FrameLayout
-        android:layout_width="535dp"
+        android:layout_width="550dp"
         android:layout_height="369dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
@@ -87,8 +87,8 @@
         android:layout_toStartOf="@+id/crayon">
 
         <view
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
             class="com.zebra.mommywhereismyzebra.CustomView"
             android:id="@+id/view"
             android:layout_gravity="center_horizontal|top"
@@ -99,7 +99,7 @@
     </FrameLayout>
 
     <HorizontalScrollView
-        android:layout_width="535dp"
+        android:layout_width="550dp"
         android:layout_height="70dp"
         android:id="@+id/maliste"
         android:layout_below="@+id/prendreVideo"
@@ -248,8 +248,8 @@
         android:src="@mipmap/gomme"
         android:layout_alignTop="@+id/ouvrirVideo"
         android:layout_gravity="right|center_vertical"
-        android:layout_x="540dp"
-        android:layout_y="90dp"
+        android:layout_x="555dp"
+        android:layout_y="70dp"
         android:onClick="utiliserGomme" />
 
     <ImageButton
@@ -269,8 +269,8 @@
         android:focusable="false"
         android:src="@mipmap/crayon"
         android:layout_gravity="right|top"
-        android:layout_x="540dp"
-        android:layout_y="40dp"
+        android:layout_x="555dp"
+        android:layout_y="20dp"
         android:onClick="utiliserCrayon" />
 
 
@@ -281,7 +281,7 @@
         android:layout_x="260dp"
         android:layout_y="340dp"
         android:src="@mipmap/up"
-        android:background="@xml/test"
+        android:background="@android:color/transparent"
         android:onClick="afficherliste"/>
 
     <ImageButton
@@ -290,26 +290,27 @@
         android:id="@+id/affciherBoutons"
         android:layout_x="260dp"
         android:layout_y="0dp"
-        android:background="@xml/test"
+        android:background="@android:color/transparent"
         android:src="@mipmap/down"
         android:onClick="afficherBoutons" />
 
     <SeekBar
-        android:layout_width="50dp"
+        android:layout_width="80dp"
         android:layout_height="30dp"
         android:id="@+id/taille"
         android:layout_x="535dp"
         android:layout_y="200dp"
         android:rotation="270"
         android:clickable="true"
-        android:progressDrawable="@xml/a"
-        android:visibility="visible" />
+        android:progressDrawable="@xml/style_seek_bar"
+        android:visibility="visible"
+        android:max="100" />
 
     <HorizontalScrollView
         android:layout_width="360dp"
         android:layout_height="50dp"
         android:id="@+id/mesBoutons"
-        android:layout_x="140dp"
+        android:layout_x="90dp"
         android:layout_y="0dp"
         android:visibility="invisible">
 
@@ -366,6 +367,19 @@
                 android:src="@mipmap/undo" />
         </LinearLayout>
     </HorizontalScrollView>
+
+    <FrameLayout
+        android:layout_width="55dp"
+        android:layout_height="70dp"
+        android:layout_x="555dp"
+        android:layout_y="280dp">
+
+        <view
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            class="com.zebra.mommywhereismyzebra.ViewTailleCrayon"
+            android:id="@+id/view2" />
+    </FrameLayout>
 
 
 </AbsoluteLayout>

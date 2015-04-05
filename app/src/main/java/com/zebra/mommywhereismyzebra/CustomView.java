@@ -208,4 +208,8 @@ public class CustomView extends View{
         mCanvas = new Canvas(mBitmap);
         this.invalidate();
     }
+
+    public void changeStrokeWidth(int taille){
+        mPaint.setStrokeWidth(taille);
+    }
 }
