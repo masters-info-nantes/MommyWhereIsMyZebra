@@ -84,7 +84,7 @@ public class ColorPicker extends DialogFragment {
         couleur = (ImageButton)view.findViewById(R.id.couleurSel);
         couleur.setColorFilter(couleurBase);
 
-        annuler = (Button)view.findViewById(R.id.annuler);
+        annuler = (Button)view.findViewById(R.id.annuler2);
         annuler.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

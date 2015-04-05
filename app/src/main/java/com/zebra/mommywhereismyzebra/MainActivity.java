@@ -174,17 +174,6 @@ public class MainActivity extends Activity {
 
     public void changerCouleur(View v) {
 
-        /*ColorPickerDialog p = new ColorPickerDialog(this,new ColorPickerDialog.OnColorChangedListener() {
-            @Override
-            public void colorChanged(int color) {
-                couleur.setBackgroundColor(color);
-                zoneDessin.setColor(color);
-                affichageTailleCrayon.setColor(color);
-                affichageTailleCrayon.drawLine();
-                couleurCourante = color;
-            }
-        }, Color.BLACK);
-        p.show();*/
         ColorPicker colorPicker = new ColorPicker();
         colorPicker.setColor(couleurCourante);
         colorPicker.setCouleurChoisieListener(new ColorPicker.CouleurChoisieListener() {

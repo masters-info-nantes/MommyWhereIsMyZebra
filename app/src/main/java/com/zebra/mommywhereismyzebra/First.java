@@ -30,7 +30,6 @@ public class First extends Activity {
 
             @Override
             public void onClick(View v) {
-
                 Intent fileIntent = new Intent(Intent.ACTION_GET_CONTENT);
                 fileIntent.setType("video/*");
                 startActivityForResult(fileIntent, 10);
@@ -44,12 +43,22 @@ public class First extends Activity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(requestCode == 101 || requestCode == 10){
+            ChoixFrequenceVideo p = new ChoixFrequenceVideo();
+            p.setVideoChoisie(new ChoixFrequenceVideo.VideoListener() {
+                  @Override
+                  public void VideoListener(int newColor) {
+                      versZoneDeTravail();
+                  }
+              });
+             p.show(getFragmentManager(), "CHoix frequence");
 
-            Intent myIntent = new Intent(this, MainActivity.class);
-            startActivityForResult(myIntent, 0);
         }
     }
 
+       public void versZoneDeTravail(){
+           Intent myIntent = new Intent(this, MainActivity.class);
+           startActivityForResult(myIntent, 0);
+       }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
