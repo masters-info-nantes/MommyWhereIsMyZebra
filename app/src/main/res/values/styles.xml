@@ -2,6 +2,8 @@
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="android:Theme.Holo.Light">
+        </style>
+    <style name="Dialog" parent="android:Theme.Holo.Dialog.NoActionBar">
         <!-- Customize your theme here. -->
     </style>
     <declare-styleable name="ColorPickerPreference">

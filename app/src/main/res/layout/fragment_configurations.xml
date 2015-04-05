@@ -1,0 +1,134 @@
+<AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="fill_parent"
+    android:layout_height="match_parent"
+    tools:context="com.zebra.mommywhereismyzebra.Configurations">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nombre de plelures d&apos;oignon : "
+        android:id="@+id/textView"
+        android:textSize="16dp"
+        android:editable="false"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_x="3dp"
+        android:layout_y="4dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Fréquence des pelures d&apos;oignons : "
+        android:id="@+id/textView2"
+        android:layout_below="@+id/textView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:textSize="16dp"
+        android:editable="false"
+        android:layout_x="8dp"
+        android:layout_y="71dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Visionner les"
+        android:id="@+id/textView3"
+        android:layout_below="@+id/textView2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:textSize="16dp"
+        android:editable="false"
+        android:layout_x="4dp"
+        android:layout_y="37dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="dernières images"
+        android:id="@+id/textView4"
+        android:textSize="16dp"
+        android:layout_alignTop="@+id/editText2"
+        android:layout_toRightOf="@+id/editText2"
+        android:layout_toEndOf="@+id/editText2"
+        android:layout_x="169dp"
+        android:layout_y="37dp" />
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Afficher l&apos;image de fond dans la vidéo"
+        android:id="@+id/checkBox"
+        android:layout_below="@+id/textView3"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:checked="false"
+        android:textSize="16dp"
+        android:layout_x="8dp"
+        android:layout_y="95dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Interface droitier: "
+        android:id="@+id/textView5"
+        android:layout_below="@+id/checkBox"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:textSize="16dp"
+        android:editable="false"
+        android:layout_x="14dp"
+        android:layout_y="130dp" />
+
+    <Switch
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/switch1"
+        android:checked="false"
+        android:layout_below="@+id/checkBox"
+        android:layout_centerHorizontal="true"
+        android:layout_x="158dp"
+        android:layout_y="130dp" />
+
+    <Spinner
+        android:layout_width="102dp"
+        android:layout_height="50dp"
+        android:id="@+id/spinner"
+        android:layout_above="@+id/textView2"
+        android:layout_toRightOf="@+id/textView"
+        android:layout_alignRight="@+id/textView4"
+        android:layout_alignEnd="@+id/textView4"
+        android:layout_alignTop="@+id/textView"
+        android:layout_x="260dp"
+        android:layout_y="50dp" />
+
+    <EditText
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="10"
+        android:id="@+id/editText2"
+        android:layout_toRightOf="@+id/textView3"
+        android:layout_below="@+id/textView2"
+        android:textSize="16dp"
+        android:layout_above="@+id/checkBox"
+        android:layout_toStartOf="@+id/switch1"
+        android:layout_toLeftOf="@+id/switch1"
+        android:layout_x="106dp"
+        android:layout_y="37dp" />
+
+    <Spinner
+        android:layout_width="102dp"
+        android:layout_height="39dp"
+        android:id="@+id/spinner3"
+        android:layout_above="@+id/textView2"
+        android:layout_toRightOf="@+id/textView"
+        android:layout_alignRight="@+id/textView4"
+        android:layout_alignEnd="@+id/textView4"
+        android:layout_alignTop="@+id/textView"
+        android:layout_x="226dp"
+        android:layout_y="4dp"
+        android:entries="@array/frequences" />
+</AbsoluteLayout>

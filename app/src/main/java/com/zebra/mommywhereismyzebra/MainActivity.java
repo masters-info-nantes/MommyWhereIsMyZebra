@@ -273,4 +273,10 @@ public class MainActivity extends Activity {
         }
     }
 
+    public void changerConfig(View v){
+        Configurations conf = new Configurations();
+
+        conf.show(getFragmentManager(), "Configurations");
+    }
+
 }

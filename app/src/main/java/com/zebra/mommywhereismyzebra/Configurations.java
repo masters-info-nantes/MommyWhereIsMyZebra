@@ -2,23 +2,15 @@ package com.zebra.mommywhereismyzebra;
 
 import android.app.Activity;
 import android.app.DialogFragment;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
 
-public class ChoixFrequenceVideo extends DialogFragment {
-
-    public interface VideoListener {
-        public void VideoListener(int newColor);
-    }
-
+public class Configurations extends DialogFragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -27,9 +19,7 @@ public class ChoixFrequenceVideo extends DialogFragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-    private VideoListener mListener;
-    private Button ok;
-    private Button annuler;
+
 
     /**
      * Use this factory method to create a new instance of
@@ -37,11 +27,11 @@ public class ChoixFrequenceVideo extends DialogFragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment ChoixFrequenceVideo.
+     * @return A new instance of fragment Configurations.
      */
     // TODO: Rename and change types and number of parameters
-    public static ChoixFrequenceVideo newInstance(String param1, String param2) {
-        ChoixFrequenceVideo fragment = new ChoixFrequenceVideo();
+    public static Configurations newInstance(String param1, String param2) {
+        Configurations fragment = new Configurations();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -49,7 +39,7 @@ public class ChoixFrequenceVideo extends DialogFragment {
         return fragment;
     }
 
-    public ChoixFrequenceVideo() {
+    public Configurations() {
         // Required empty public constructor
     }
 
@@ -57,6 +47,7 @@ public class ChoixFrequenceVideo extends DialogFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setStyle(DialogFragment.STYLE_NO_TITLE, R.style.Dialog);
+
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
@@ -67,30 +58,9 @@ public class ChoixFrequenceVideo extends DialogFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_choix_frequence_video, container);
-
-        ok = (Button)view.findViewById(R.id.frequenceChoisie);
-        ok.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mListener.VideoListener(0);
-
-                dismiss();
-            }
-        });
-
-        annuler = (Button)view.findViewById(R.id.annuler2);
-        annuler.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dismiss();
-            }
-        });
-        return view;
+        return inflater.inflate(R.layout.fragment_configurations, container, false);
     }
 
-    public void setVideoChoisie(VideoListener listener) {
-        mListener = listener;
-    }
+
 
 }
