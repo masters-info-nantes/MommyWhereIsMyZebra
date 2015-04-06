@@ -7,9 +7,11 @@ import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageButton;
@@ -41,8 +43,9 @@ public class MainActivity extends Activity {
 
     private SeekBar taille;
 
-    private MenuItem settings;
-
+    private ImageButton afficherDessin;
+    private ImageButton afficherCalque;
+    private ImageButton afficherImages;
 
     private ImageButton afficherMesImages;
     private ImageButton afficherMesBoutons;
@@ -61,12 +64,20 @@ public class MainActivity extends Activity {
 
         pelureOignons = new ArrayList<ImageView>();
         couleurCourante = Color.BLACK;
-
         setContentView(R.layout.activity_main);
 
         crayon = (ImageButton) findViewById(R.id.crayon);
         gomme = (ImageButton) findViewById(R.id.gomme);
         couleur = (ImageButton) findViewById(R.id.couleur);
+
+        afficherDessin = (ImageButton)findViewById(R.id.dessin);
+        afficherDessin.setAlpha(0.5f);
+
+        afficherCalque = (ImageButton)findViewById(R.id.calque);
+        afficherCalque.setAlpha(0.5f);
+
+        afficherImages = (ImageButton)findViewById(R.id.film);
+        afficherImages.setAlpha(0.5f);
 
         taille = (SeekBar)findViewById(R.id.taille);
         affichageTailleCrayon = (ViewTailleCrayon)findViewById(R.id.view2);
@@ -116,7 +127,6 @@ public class MainActivity extends Activity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
-        settings = (MenuItem)menu.findItem(R.id.action_settings);
 
         return true;
     }
@@ -199,7 +209,11 @@ public class MainActivity extends Activity {
 
     public void changerImage(View v){
         //layoutZoneDessin.setBackground(((ImageView) v).getDrawable());
-        imageFond.setBackground(((ImageView) v).getBackground());
+
+        Drawable temp = v.getBackground();
+        Drawable c = temp.getConstantState().newDrawable();
+
+        imageFond.setBackground(c);
 
         for(int i = 0; i<g.getChildCount(); i++){
             if(((ImageView) v).getId() == g.getChildAt(i).getId()){
@@ -208,6 +222,7 @@ public class MainActivity extends Activity {
         }
 
         Drawable myDrawable = ((ImageView)g.getChildAt(index)).getDrawable();
+        myDrawable = myDrawable.mutate();
         if(myDrawable != null) {
             Bitmap myLogo = ((BitmapDrawable) myDrawable).getBitmap();
             zoneDessin.setmBitmap(myLogo);
@@ -224,6 +239,7 @@ public class MainActivity extends Activity {
             index++;
             //layoutZoneDessin.setBackground(((ImageView)g.getChildAt(index)).getDrawable());
             Drawable myDrawable = ((ImageView)g.getChildAt(index)).getDrawable();
+
             if(myDrawable != null) {
                 Bitmap myLogo = ((BitmapDrawable) myDrawable).getBitmap();
                 zoneDessin.setmBitmap(myLogo);
@@ -232,7 +248,11 @@ public class MainActivity extends Activity {
                 Bitmap myLogo = Bitmap.createBitmap(50, 50, Bitmap.Config.ARGB_8888);
                 zoneDessin.setmBitmap(myLogo);
             }
-            imageFond.setBackground(((ImageView) g.getChildAt(index)).getBackground());
+
+            Drawable temp = g.getChildAt(index).getBackground();
+            Drawable c = temp.getConstantState().newDrawable();
+
+            imageFond.setBackground(c);
         }
         changerPeluresOignon();
     }
@@ -250,7 +270,10 @@ public class MainActivity extends Activity {
                 zoneDessin.setmBitmap(myLogo);
             }
             //layoutZoneDessin.setBackground(((ImageView)g.getChildAt(index)).getDrawable());
-            imageFond.setBackground(((ImageView) g.getChildAt(index)).getBackground());
+            Drawable temp = g.getChildAt(index).getBackground();
+            Drawable c = temp.getConstantState().newDrawable();
+
+            imageFond.setBackground(c);
         }
         changerPeluresOignon();
     }
@@ -261,7 +284,11 @@ public class MainActivity extends Activity {
         float transp = 0.85f;
         for(int i = pelureOignons.size() - 1; i>=0; i--){
             if(debut>=0 && nb>0){
-                pelureOignons.get(i).setBackground(((ImageView) g.getChildAt(debut)).getDrawable());
+                Drawable temp = ((ImageView) g.getChildAt(debut)).getDrawable();
+                Drawable c = temp.getConstantState().newDrawable();
+                c.setAlpha(255);
+                c = c.mutate();
+                pelureOignons.get(i).setBackground(c);
                 pelureOignons.get(i).setAlpha(transp);
                 transp -= 0.1f;
                 debut--;
@@ -279,4 +306,59 @@ public class MainActivity extends Activity {
         conf.show(getFragmentManager(), "Configurations");
     }
 
+    public void changerAffichageDessin(View v){
+        if(zoneDessin.getVisibility() == View.INVISIBLE) {
+            zoneDessin.setVisibility(View.VISIBLE);
+
+            for(int i = 0; i < g.getChildCount(); i++){
+                if(((ImageView)g.getChildAt(i)).getDrawable() != null){
+                    ((ImageView)g.getChildAt(i)).getDrawable().setAlpha(255);
+                }
+            }
+            afficherDessin.setAlpha(0.5f);
+        }
+        else{
+            zoneDessin.setVisibility(View.INVISIBLE);
+            for(int i = 0; i < g.getChildCount(); i++){
+                if(((ImageView)g.getChildAt(i)).getDrawable() != null){
+                    ((ImageView)g.getChildAt(i)).getDrawable().setAlpha(0);
+                }
+            }
+            afficherDessin.setAlpha(1f);
+        }
+    }
+
+    public void changerAffichageCalque(View V) {
+        for (int i = 0; i < pelureOignons.size(); i++) {
+            if (pelureOignons.get(i) != null) {
+                if(pelureOignons.get(i).getVisibility() == View.VISIBLE) {
+                    pelureOignons.get(i).setVisibility(View.INVISIBLE);
+                    afficherCalque.setAlpha(1f);
+                }
+                else{
+                    pelureOignons.get(i).setVisibility(View.VISIBLE);
+                    afficherCalque.setAlpha(0.5f);
+                }
+            }
+        }
+
+    }
+
+    public void afficherImagesFilm(View v){
+        if(imageFond.getBackground().isVisible()) {
+            imageFond.getBackground().setVisible(false, false);
+
+            for (int i = 0; i < g.getChildCount(); i++) {
+                g.getChildAt(i).getBackground().setAlpha(0);
+            }
+            afficherImages.setAlpha(1f);
+        }
+        else{
+            imageFond.getBackground().setVisible(true, true);
+            for(int i = 0; i < g.getChildCount(); i++){
+                g.getChildAt(i).getBackground().setAlpha(255);
+            }
+            afficherImages.setAlpha(0.5f);
+        }
+    }
 }

@@ -58,7 +58,7 @@ public class ColorPicker extends DialogFragment {
 
     public void setColor(int couleur){
         this.couleurBase = couleur;
-        this.couleur.setBackgroundColor(couleurBase);
+
     }
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -84,7 +84,7 @@ public class ColorPicker extends DialogFragment {
         View view = inflater.inflate(R.layout.picker_color, container);
 
         couleur = (ImageButton)view.findViewById(R.id.couleurSel);
-        couleur.setColorFilter(couleurBase);
+        couleur.setBackgroundColor(couleurBase);
 
         annuler = (Button)view.findViewById(R.id.annuler2);
         annuler.setOnClickListener(new View.OnClickListener() {

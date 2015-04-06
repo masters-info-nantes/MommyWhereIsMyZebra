@@ -24,7 +24,7 @@
 
     <RelativeLayout
         android:layout_width="550dp"
-        android:layout_height="fill_parent"
+        android:layout_height="360dp"
         android:background="@mipmap/image001"
         android:id="@+id/imageFond">
 
@@ -124,7 +124,7 @@
 
             <ImageView
                 android:layout_width="150dp"
-                android:layout_height="wrap_content"
+                android:layout_height="70dp"
                 android:id="@+id/imageView1"
                 android:src="@mipmap/calque01"
                 android:clickable="true"
@@ -135,7 +135,7 @@
 
             <ImageView
                 android:layout_width="150dp"
-                android:layout_height="wrap_content"
+                android:layout_height="70dp"
                 android:id="@+id/imageView2"
                 android:src="@mipmap/calque02"
                 android:onClick="changerImage"
@@ -145,7 +145,7 @@
 
             <ImageView
                 android:layout_width="150dp"
-                android:layout_height="wrap_content"
+                android:layout_height="70dp"
                 android:id="@+id/imageView3"
                 android:src="@mipmap/calque03"
                 android:onClick="changerImage"
@@ -154,7 +154,7 @@
 
             <ImageView
                 android:layout_width="150dp"
-                android:layout_height="wrap_content"
+                android:layout_height="70dp"
                 android:id="@+id/imageView4"
                 android:src="@mipmap/calque04"
                 android:onClick="changerImage"
@@ -163,7 +163,7 @@
 
             <ImageView
                 android:layout_width="150dp"
-                android:layout_height="wrap_content"
+                android:layout_height="70dp"
                 android:id="@+id/imageView5"
                 android:src="@mipmap/calque05"
                 android:onClick="changerImage"
@@ -172,7 +172,7 @@
 
             <ImageView
                 android:layout_width="150dp"
-                android:layout_height="wrap_content"
+                android:layout_height="70dp"
                 android:id="@+id/imageView6"
                 android:src="@mipmap/calque06"
                 android:onClick="changerImage"
@@ -181,7 +181,7 @@
 
             <ImageView
                 android:layout_width="150dp"
-                android:layout_height="wrap_content"
+                android:layout_height="70dp"
                 android:id="@+id/imageView7"
                 android:src="@mipmap/calque07"
                 android:onClick="changerImage"
@@ -190,7 +190,7 @@
 
             <ImageView
                 android:layout_width="150dp"
-                android:layout_height="wrap_content"
+                android:layout_height="70dp"
                 android:id="@+id/imageView8"
                 android:src="@mipmap/calque08"
                 android:onClick="changerImage"
@@ -199,7 +199,7 @@
 
             <ImageView
                 android:layout_width="150dp"
-                android:layout_height="wrap_content"
+                android:layout_height="70dp"
                 android:id="@+id/imageView9"
                 android:src="@mipmap/calque09"
                 android:onClick="changerImage"
@@ -208,7 +208,7 @@
 
             <ImageView
                 android:layout_width="150dp"
-                android:layout_height="wrap_content"
+                android:layout_height="70dp"
                 android:id="@+id/imageView10"
                 android:src="@mipmap/calque10"
                 android:onClick="changerImage"
@@ -217,7 +217,7 @@
 
             <ImageView
                 android:layout_width="150dp"
-                android:layout_height="wrap_content"
+                android:layout_height="70dp"
                 android:id="@+id/imageView11"
                 android:src="@mipmap/calque11"
                 android:onClick="changerImage"
@@ -226,7 +226,7 @@
 
             <ImageView
                 android:layout_width="150dp"
-                android:layout_height="wrap_content"
+                android:layout_height="70dp"
                 android:id="@+id/imageView12"
                 android:onClick="changerImage"
                 android:layout_marginRight="10dp"
@@ -324,19 +324,24 @@
                 android:layout_width="50dp"
                 android:layout_height="40dp"
                 android:id="@+id/dessin"
-                android:src="@mipmap/dessin"/>
+                android:src="@mipmap/dessin"
+                android:onClick="changerAffichageDessin"
+                android:focusable="false"
+                android:focusableInTouchMode="false" />
 
             <ImageButton
                 android:layout_width="50dp"
                 android:layout_height="40dp"
                 android:id="@+id/calque"
-                android:src="@mipmap/calque"/>
+                android:src="@mipmap/calque"
+                android:onClick="changerAffichageCalque" />
 
             <ImageButton
                 android:layout_width="50dp"
                 android:layout_height="40dp"
                 android:id="@+id/film"
-                android:src="@mipmap/film"/>
+                android:src="@mipmap/film"
+                android:onClick="afficherImagesFilm" />
 
             <ImageButton
                 android:layout_width="50dp"
@@ -367,10 +372,11 @@
                 android:src="@mipmap/undo" />
 
             <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="50dp"
+                android:layout_height="40dp"
                 android:id="@+id/imageButton2"
-                android:onClick="changerConfig" />
+                android:onClick="changerConfig"
+                android:src="@mipmap/settings_icon" />
         </LinearLayout>
     </HorizontalScrollView>
 
