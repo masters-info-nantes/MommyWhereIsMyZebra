@@ -50,9 +50,9 @@
         android:text="dernières images"
         android:id="@+id/textView4"
         android:textSize="16dp"
-        android:layout_alignTop="@+id/editText2"
-        android:layout_toRightOf="@+id/editText2"
-        android:layout_toEndOf="@+id/editText2"
+        android:layout_alignTop="@+id/nbImg"
+        android:layout_toRightOf="@+id/nbImg"
+        android:layout_toEndOf="@+id/nbImg"
         android:layout_x="169dp"
         android:layout_y="37dp" />
 
@@ -85,7 +85,7 @@
     <Switch
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/switch1"
+        android:id="@+id/droitier"
         android:checked="false"
         android:layout_below="@+id/checkBox"
         android:layout_centerHorizontal="true"
@@ -95,34 +95,20 @@
     <Spinner
         android:layout_width="102dp"
         android:layout_height="50dp"
-        android:id="@+id/spinner"
+        android:id="@+id/freqPel"
         android:layout_above="@+id/textView2"
         android:layout_toRightOf="@+id/textView"
         android:layout_alignRight="@+id/textView4"
         android:layout_alignEnd="@+id/textView4"
         android:layout_alignTop="@+id/textView"
         android:layout_x="260dp"
-        android:layout_y="50dp" />
-
-    <EditText
-        android:layout_width="50dp"
-        android:layout_height="wrap_content"
-        android:inputType="number"
-        android:ems="10"
-        android:id="@+id/editText2"
-        android:layout_toRightOf="@+id/textView3"
-        android:layout_below="@+id/textView2"
-        android:textSize="16dp"
-        android:layout_above="@+id/checkBox"
-        android:layout_toStartOf="@+id/switch1"
-        android:layout_toLeftOf="@+id/switch1"
-        android:layout_x="106dp"
-        android:layout_y="37dp" />
+        android:layout_y="50dp"
+        android:entries="@array/freqPel" />
 
     <Spinner
         android:layout_width="102dp"
         android:layout_height="39dp"
-        android:id="@+id/spinner3"
+        android:id="@+id/nbPel"
         android:layout_above="@+id/textView2"
         android:layout_toRightOf="@+id/textView"
         android:layout_alignRight="@+id/textView4"
@@ -130,5 +116,24 @@
         android:layout_alignTop="@+id/textView"
         android:layout_x="226dp"
         android:layout_y="4dp"
-        android:entries="@array/frequences" />
+        android:entries="@array/nbPelureOignons" />
+
+    <Button
+        android:layout_width="101dp"
+        android:layout_height="wrap_content"
+        android:text="OK"
+        android:id="@+id/ok_conf"
+        android:layout_x="79dp"
+        android:layout_y="160dp" />
+
+    <EditText
+        android:layout_width="59dp"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="10"
+        android:id="@+id/nbImg"
+        android:layout_x="108dp"
+        android:layout_y="25dp"
+        android:text="10" />
+
 </AbsoluteLayout>

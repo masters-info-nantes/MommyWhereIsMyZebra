@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AbsoluteLayout;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.HorizontalScrollView;
@@ -53,10 +54,19 @@ public class MainActivity extends Activity {
     private LinearLayout g;
     private RelativeLayout imageFond;
 
+    private AbsoluteLayout outils;
+    private AbsoluteLayout travail;
+
     private List<ImageView> pelureOignons;
 
+    private boolean modeDroitier = true;
     private int nbPeluresOignons = 5;
     ViewTailleCrayon affichageTailleCrayon;
+
+    int nbImages = 10;
+    int frequencePelures = 1;
+    boolean afficherImage = false;
+    boolean droitier = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +79,10 @@ public class MainActivity extends Activity {
         crayon = (ImageButton) findViewById(R.id.crayon);
         gomme = (ImageButton) findViewById(R.id.gomme);
         couleur = (ImageButton) findViewById(R.id.couleur);
+
+        outils = (AbsoluteLayout)findViewById(R.id.outils);
+        travail = (AbsoluteLayout)findViewById(R.id.travail);
+
 
         afficherDessin = (ImageButton)findViewById(R.id.dessin);
         afficherDessin.setAlpha(0.5f);
@@ -301,9 +315,28 @@ public class MainActivity extends Activity {
     }
 
     public void changerConfig(View v){
+
         Configurations conf = new Configurations();
+        conf.setConf(this.nbPeluresOignons, this.nbImages, this.frequencePelures, this.afficherImage, this.droitier);
+        conf.setConfigListener(new Configurations.ConfigChoisie() {
+            @Override
+            public void configChoisie(String nbPelures, int nbDernieresIages, String frequencePelures, boolean afficherImageFond, boolean droitier) {
+                if(droitier){
+                    outils.setX(travail.getWidth() + 1);
+                    travail.setX(0);
+                    modeDroitier = true;
+                }
+                else{
+                    outils.setX(0);
+                    travail.setX(outils.getWidth()+1);
+                    modeDroitier = false;
+                }
+            }
+        });
 
         conf.show(getFragmentManager(), "Configurations");
+
+
     }
 
     public void changerAffichageDessin(View v){

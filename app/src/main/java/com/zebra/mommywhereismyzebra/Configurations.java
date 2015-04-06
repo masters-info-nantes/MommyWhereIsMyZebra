@@ -8,9 +8,20 @@ import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.EditText;
+import android.widget.NumberPicker;
+import android.widget.Spinner;
+import android.widget.Switch;
 
 
 public class Configurations extends DialogFragment {
+
+    public interface ConfigChoisie {
+        public void configChoisie(String nbPelures, int nbDernieresIages, String frequencePelures, boolean afficherImageFond, boolean droitier);
+    }
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -20,6 +31,20 @@ public class Configurations extends DialogFragment {
     private String mParam1;
     private String mParam2;
 
+    private Button ok;
+    Spinner nbPelures;
+    EditText nbImages;
+    Spinner frequencePelures;
+    CheckBox afficherImage;
+    Switch droitier;
+
+    int nbPeluresVal;
+    int nbDernieresIagesVal;
+    int frequencePeluresVal;
+    boolean afficherImageFondVal;
+    boolean droitierVal;
+
+    private ConfigChoisie mListener;
 
     /**
      * Use this factory method to create a new instance of
@@ -57,10 +82,43 @@ public class Configurations extends DialogFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        View view = inflater.inflate(R.layout.fragment_configurations, container);
+
+        nbPelures = (Spinner)view.findViewById(R.id.nbPel);
+        nbImages = (EditText)view.findViewById(R.id.nbImg);
+        frequencePelures = (Spinner)view.findViewById(R.id.freqPel);
+        afficherImage = (CheckBox)view.findViewById(R.id.checkBox);
+        droitier = (Switch)view.findViewById(R.id.droitier);
+
+        this.droitier.setChecked(droitierVal);
+        this.afficherImage.setChecked(afficherImageFondVal);
+        this.frequencePelures.setSelection(3);
+        this.nbImages.setText(String.valueOf(nbDernieresIagesVal));
+        this.nbPelures.setSelection(2);
+
+        ok = (Button)view.findViewById(R.id.ok_conf);
+        ok.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mListener.configChoisie((String)nbPelures.getSelectedItem(), Integer.parseInt(nbImages.getText().toString()), (String)frequencePelures.getSelectedItem(), afficherImage.isChecked(), droitier.isChecked());
+                dismiss();
+            }
+        });
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_configurations, container, false);
+        return view;
+    }
+    public void setConf(int nbPelures, int nbDernieresIages, int frequencePelures, boolean afficherImageFond, boolean droitier){
+        nbPeluresVal = nbPelures;
+        nbDernieresIagesVal = nbDernieresIages;
+        frequencePeluresVal = frequencePelures;
+        afficherImageFondVal = afficherImageFond;
+        droitierVal = droitier;
     }
 
+    public void setConfigListener(ConfigChoisie listener) {
+        mListener = listener;
+    }
 
 
 }
