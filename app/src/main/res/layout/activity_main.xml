@@ -176,10 +176,10 @@
         </FrameLayout>
 
         <HorizontalScrollView
-            android:layout_width="390dp"
+            android:layout_width="500dp"
             android:layout_height="50dp"
             android:id="@+id/mesBoutons"
-            android:layout_x="75dp"
+            android:layout_x="25dp"
             android:layout_y="0dp"
             android:visibility="invisible">
 
@@ -246,6 +246,19 @@
                     android:id="@+id/imageButton2"
                     android:onClick="changerConfig"
                     android:src="@mipmap/settings_icon" />
+
+                <ImageButton
+                    android:layout_width="50dp"
+                    android:layout_height="40dp"
+                    android:id="@+id/imageButton3"
+                    android:src="@mipmap/play" />
+
+                <ImageButton
+                    android:layout_width="50dp"
+                    android:layout_height="40dp"
+                    android:id="@+id/imageButton4"
+                    android:src="@mipmap/share" />
+
             </LinearLayout>
         </HorizontalScrollView>
 

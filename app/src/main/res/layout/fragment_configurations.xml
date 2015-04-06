@@ -7,7 +7,7 @@
 
     <TextView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="20dp"
         android:text="Nombre de plelures d&apos;oignon : "
         android:id="@+id/textView"
         android:textSize="16dp"
@@ -15,8 +15,8 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_x="3dp"
-        android:layout_y="4dp" />
+        android:layout_x="0dp"
+        android:layout_y="19dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -28,12 +28,12 @@
         android:layout_alignParentStart="true"
         android:textSize="16dp"
         android:editable="false"
-        android:layout_x="8dp"
-        android:layout_y="71dp" />
+        android:layout_x="0dp"
+        android:layout_y="85dp" />
 
     <TextView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="20dp"
         android:text="Visionner les"
         android:id="@+id/textView3"
         android:layout_below="@+id/textView2"
@@ -41,8 +41,8 @@
         android:layout_alignParentStart="true"
         android:textSize="16dp"
         android:editable="false"
-        android:layout_x="4dp"
-        android:layout_y="37dp" />
+        android:layout_x="0dp"
+        android:layout_y="50dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -54,7 +54,7 @@
         android:layout_toRightOf="@+id/nbImg"
         android:layout_toEndOf="@+id/nbImg"
         android:layout_x="169dp"
-        android:layout_y="37dp" />
+        android:layout_y="50dp" />
 
     <CheckBox
         android:layout_width="wrap_content"
@@ -66,21 +66,21 @@
         android:layout_alignParentStart="true"
         android:checked="false"
         android:textSize="16dp"
-        android:layout_x="8dp"
-        android:layout_y="95dp" />
+        android:layout_x="0dp"
+        android:layout_y="115dp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Interface droitier: "
+        android:text="Interface droitier : "
         android:id="@+id/textView5"
         android:layout_below="@+id/checkBox"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:textSize="16dp"
         android:editable="false"
-        android:layout_x="14dp"
-        android:layout_y="130dp" />
+        android:layout_x="0dp"
+        android:layout_y="158dp" />
 
     <Switch
         android:layout_width="wrap_content"
@@ -89,20 +89,20 @@
         android:checked="false"
         android:layout_below="@+id/checkBox"
         android:layout_centerHorizontal="true"
-        android:layout_x="158dp"
-        android:layout_y="130dp" />
+        android:layout_x="142dp"
+        android:layout_y="150dp" />
 
     <Spinner
         android:layout_width="102dp"
-        android:layout_height="50dp"
+        android:layout_height="39dp"
         android:id="@+id/freqPel"
         android:layout_above="@+id/textView2"
         android:layout_toRightOf="@+id/textView"
         android:layout_alignRight="@+id/textView4"
         android:layout_alignEnd="@+id/textView4"
         android:layout_alignTop="@+id/textView"
-        android:layout_x="260dp"
-        android:layout_y="50dp"
+        android:layout_x="245dp"
+        android:layout_y="70dp"
         android:entries="@array/freqPel" />
 
     <Spinner
@@ -115,7 +115,7 @@
         android:layout_alignEnd="@+id/textView4"
         android:layout_alignTop="@+id/textView"
         android:layout_x="226dp"
-        android:layout_y="4dp"
+        android:layout_y="5dp"
         android:entries="@array/nbPelureOignons" />
 
     <Button
@@ -123,17 +123,17 @@
         android:layout_height="wrap_content"
         android:text="OK"
         android:id="@+id/ok_conf"
-        android:layout_x="79dp"
-        android:layout_y="160dp" />
+        android:layout_x="127dp"
+        android:layout_y="189dp" />
 
     <EditText
         android:layout_width="59dp"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:inputType="number"
         android:ems="10"
         android:id="@+id/nbImg"
-        android:layout_x="108dp"
-        android:layout_y="25dp"
+        android:layout_x="100dp"
+        android:layout_y="35dp"
         android:text="10" />
 
 </AbsoluteLayout>

@@ -93,9 +93,9 @@ public class Configurations extends DialogFragment {
 
         this.droitier.setChecked(droitierVal);
         this.afficherImage.setChecked(afficherImageFondVal);
-        this.frequencePelures.setSelection(3);
+        this.frequencePelures.setSelection(0);
         this.nbImages.setText(String.valueOf(nbDernieresIagesVal));
-        this.nbPelures.setSelection(2);
+        this.nbPelures.setSelection(0);
 
         ok = (Button)view.findViewById(R.id.ok_conf);
         ok.setOnClickListener(new View.OnClickListener() {
