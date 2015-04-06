@@ -6,35 +6,30 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
-import android.graphics.PointF;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.util.AttributeSet;
-import android.widget.ImageButton;
-import android.widget.ImageView;
-
-import java.util.Random;
 
 /**
- * Created by Soge on 14/03/15.
+ * Vue qui permet de dessiner
  */
 public class CustomView extends View{
 
-    public int width;
-    public  int height;
     private Bitmap  mBitmap;
     private Canvas  mCanvas;
     private Path    mPath;
     private Paint   mBitmapPaint;
     Context context;
+
+    /**
+     * Permet de dessiner un cercle pour voir ou l'on dessine
+     */
     private Paint circlePaint;
     private Path circlePath;
     private Paint       mPaint;
+
     private boolean gomme = false;
     private boolean ligne = false;
 
@@ -44,6 +39,7 @@ public class CustomView extends View{
 
         mPath = new Path();
         mBitmapPaint = new Paint(Paint.DITHER_FLAG);
+
         circlePaint = new Paint();
         circlePath = new Path();
         circlePaint.setAntiAlias(true);
@@ -51,6 +47,7 @@ public class CustomView extends View{
         circlePaint.setStyle(Paint.Style.STROKE);
         circlePaint.setStrokeJoin(Paint.Join.MITER);
         circlePaint.setStrokeWidth(4f);
+
         mPaint = new Paint();
         mPaint.setAntiAlias(true);
         mPaint.setDither(true);
@@ -64,6 +61,7 @@ public class CustomView extends View{
     public CustomView(Context c, AttributeSet attrs){
         super (c, attrs);
         context=c;
+
         mPath = new Path();
         mBitmapPaint = new Paint(Paint.DITHER_FLAG);
         circlePaint = new Paint();

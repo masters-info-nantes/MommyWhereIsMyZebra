@@ -21,7 +21,7 @@ import android.widget.ImageView;
 import java.util.Random;
 
 /**
- * Created by Soge on 14/03/15.
+ * Permet d'afficher un trait pour montrer a l'utilisateur de quelle taille est son crayon
  */
 public class ViewTailleCrayon extends View{
 

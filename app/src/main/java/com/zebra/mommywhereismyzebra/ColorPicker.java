@@ -8,7 +8,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 
-
+/**
+ * Fenetre de dialog qui permet de choisir une couleur
+ */
 public class ColorPicker extends DialogFragment {
 
     public interface CouleurChoisieListener {
@@ -29,10 +31,10 @@ public class ColorPicker extends DialogFragment {
     private Button annuler;
     private Button ok;
 
+    //couleur deja utilisee
     private int couleurBase;
 
     private CouleurChoisieListener mListener;
-
 
     /**
      * Use this factory method to create a new instance of
@@ -68,14 +70,6 @@ public class ColorPicker extends DialogFragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-
-       /* choixCouleur = (Square)getActivity().findViewById(R.id.choixCouleur);
-        choixCouleur.setOnColorChangedListener(new Square.OnColorChangedListener() {
-            @Override
-            public void onColorChanged(int newColor) {
-                couleur.setBackgroundColor(newColor);
-            }
-        });*/
     }
 
     @Override

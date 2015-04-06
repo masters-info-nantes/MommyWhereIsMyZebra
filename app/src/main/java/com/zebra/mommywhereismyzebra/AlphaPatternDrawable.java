@@ -23,7 +23,6 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.Bitmap.Config;
 import android.graphics.drawable.Drawable;
-import android.view.View;
 
 /**
  * This drawable will draw a simple white and gray chessboard pattern.

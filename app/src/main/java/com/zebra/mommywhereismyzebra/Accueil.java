@@ -5,17 +5,20 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
-
-public class First extends Activity {
+/**
+ * L'utilisateur choisit si il veut chercher une video dans ses fichier
+ * ou en prendre une nouvelle
+ */
+public class Accueil extends Activity {
 
     private Button ouvrirVideo;
     private Button prendreVideo;
+
     Context c;
 
     @Override
@@ -44,21 +47,21 @@ public class First extends Activity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(requestCode == 101 || requestCode == 10){
             ChoixFrequenceVideo p = new ChoixFrequenceVideo();
-            p.setVideoChoisie(new ChoixFrequenceVideo.VideoListener() {
-                  @Override
-                  public void VideoListener(int newColor) {
-                      versZoneDeTravail();
-                  }
-              });
+            p.setVideoChoisieListener(new ChoixFrequenceVideo.VideoListener() {
+                @Override
+                public void VideoListener(int newColor) {
+                    versZoneDeTravail();
+                }
+            });
              p.show(getFragmentManager(), "CHoix frequence");
-
         }
     }
 
-       public void versZoneDeTravail(){
-           Intent myIntent = new Intent(this, MainActivity.class);
-           startActivityForResult(myIntent, 0);
-       }
+    public void versZoneDeTravail(){
+       Intent myIntent = new Intent(this, MainActivity.class);
+       startActivityForResult(myIntent, 0);
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.

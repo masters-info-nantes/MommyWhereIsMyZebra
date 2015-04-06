@@ -257,7 +257,7 @@
             android:layout_y="340dp"
             android:src="@mipmap/up"
             android:background="@android:color/transparent"
-            android:onClick="afficherliste"/>
+            android:onClick="afficherListeImages"/>
 
         <ImageButton
             android:layout_width="30dp"
