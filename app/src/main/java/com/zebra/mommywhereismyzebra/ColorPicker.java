@@ -13,8 +13,8 @@ import android.widget.ImageButton;
  */
 public class ColorPicker extends DialogFragment {
 
-    public interface CouleurChoisieListener {
-        public void CouleurChoisieListener(int newColor);
+    public interface ChoosenColorListener {
+        public void ChoosenColorListener(int newColor);
     }
 
     // TODO: Rename parameter arguments, choose names that match
@@ -34,7 +34,7 @@ public class ColorPicker extends DialogFragment {
     //couleur deja utilisee
     private int couleurBase;
 
-    private CouleurChoisieListener mListener;
+    private ChoosenColorListener mListener;
 
     /**
      * Use this factory method to create a new instance of
@@ -92,7 +92,7 @@ public class ColorPicker extends DialogFragment {
         ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mListener.CouleurChoisieListener(choixCouleur.getColor());
+                mListener.ChoosenColorListener(choixCouleur.getColor());
                 dismiss();
             }
         });
@@ -108,7 +108,7 @@ public class ColorPicker extends DialogFragment {
         return view;
     }
 
-    public void setCouleurChoisieListener(CouleurChoisieListener listener) {
+    public void setChoosenColorListener(ChoosenColorListener listener) {
         mListener = listener;
     }
 

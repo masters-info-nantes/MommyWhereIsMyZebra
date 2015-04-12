@@ -6,7 +6,6 @@ import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -92,6 +91,9 @@ public class MainActivity extends Activity {
         mesboutons = (HorizontalScrollView)findViewById(R.id.mesBoutons);
 
         SeekBar taille = (SeekBar) findViewById(R.id.taille);
+        /**
+         * Pour permettre de changer la taille de la ligne representant la taille du crayon
+         */
         taille.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
@@ -187,9 +189,9 @@ public class MainActivity extends Activity {
 
         ColorPicker colorPicker = new ColorPicker();
         colorPicker.setColor(couleurCourante);
-        colorPicker.setCouleurChoisieListener(new ColorPicker.CouleurChoisieListener() {
+        colorPicker.setChoosenColorListener(new ColorPicker.ChoosenColorListener() {
             @Override
-            public void CouleurChoisieListener(int newColor) {
+            public void ChoosenColorListener(int newColor) {
                 couleur.setBackgroundColor(newColor);
                 zoneDessin.setColor(newColor);
                 affichageTailleCrayon.setColor(newColor);
